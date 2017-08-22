@@ -3,7 +3,7 @@ int Mosipin = 11;
  int Misopin = 12;
 int sckpin = 13;
 int nsspin = 10; 
-
+//Setup Here
 void setup() {
   pinMode(nsspin,OUTPUT);
   SPI.begin(); 
