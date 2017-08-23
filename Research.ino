@@ -1,5 +1,6 @@
 #include "SPI.h"
-const int Mosipin = 11; 
+#include "CastleLink.h"
+/*const int Mosipin = 11; 
 const int Misopin = 12;
 const int sckpin = 13;
 const int nsspin = 10; 
@@ -14,16 +15,8 @@ void Clear_Cont(){
   return;
 }
 
-//Setup Here
-void setup() {
-  SPI.beginTransaction(SPISettings(300000,MSBFIRST,SPI_MODE0));
-  pinMode(nsspin,OUTPUT);
-  SPI.begin(); 
-  Clear_Cont();
-}
-
 void Speed_Cont(byte reg, short data) {
-  digitalWrite(nsspin, LOW);
+  digitalWrite(DataLink->getDataPin(3), LOW);
   byte byte0 = ID_const >> 1;
   byte0++;
   SPI.transfer(byte0);
@@ -35,7 +28,19 @@ void Speed_Cont(byte reg, short data) {
   digitalWrite(nsspin,HIGH);  
   return;
 }
+*/
+//Setup Here
+unsigned int pinID[4] = {11,12,13,10}; //Mosi, Miso, Sck, Nss
+uint8_t devID = 0;
+CastleLink castleLink(pinID, devID);
+void setup() {
+  SPI.beginTransaction(SPISettings(300000,MSBFIRST,SPI_MODE0));
+  pinMode(castleLink.getDataPin(3),OUTPUT);
+  SPI.begin(); 
+  SPI.setBitOrder(MSBFIRST);
+  castleLink.Clear_Cont();
+}
 
 void loop() {
-  Speed_Cont(128,32000);
+  castleLink.Speed_Cont(128,32000);
 }
