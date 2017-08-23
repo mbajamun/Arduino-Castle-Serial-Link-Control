@@ -34,6 +34,7 @@ unsigned int pinID[4] = {11,12,13,10}; //Mosi, Miso, Sck, Nss
 uint8_t devID = 0;
 CastleLink castleLink(pinID, devID);
 void setup() {
+  SPI.beginTransaction(SPISettings(300000,MSBFIRST,SPI_MODE0));
   pinMode(castleLink.getDataPin(3),OUTPUT);
   SPI.begin(); 
   SPI.setBitOrder(MSBFIRST);
