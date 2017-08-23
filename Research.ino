@@ -16,9 +16,9 @@ void Clear_Cont(){
 
 //Setup Here
 void setup() {
+  SPI.beginTransaction(SPISettings(300000,MSBFIRST,SPI_MODE0));
   pinMode(nsspin,OUTPUT);
   SPI.begin(); 
-  SPI.setBitOrder(MSBFIRST);
   Clear_Cont();
 }
 
