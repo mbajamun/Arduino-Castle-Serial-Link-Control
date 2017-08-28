@@ -42,5 +42,5 @@ void setup() {
 }
 
 void loop() {
-  castleLink.Speed_Cont(128,65000);
+  castleLink.Speed_Cont(128,65535);
 }
