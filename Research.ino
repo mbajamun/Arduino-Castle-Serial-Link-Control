@@ -43,4 +43,6 @@ void setup() {
 
 void loop() {
   castleLink.Speed_Cont(128,65000);
+  castleLink.readFromLink();
+  Serial.print(castleLink.getReadData(2));
 }

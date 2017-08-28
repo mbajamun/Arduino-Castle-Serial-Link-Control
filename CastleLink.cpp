@@ -55,6 +55,16 @@ void CastleLink::Speed_Cont(uint8_t reg, uint16_t data) {
   digitalWrite(nsspin,HIGH); */ 
   return;
 }
+void CastleLink::readFromLink(){
+  digitalWrite(pinID[3], LOW);
+  readData[0] = SPI.transfer(0);
+  readData[1] = SPI.transfer(0);
+  readData[2] = SPI.transfer(0);
+  digitalWrite(pinID[3], HIGH);
+}
+uint8_t CastleLink::getReadData(unsigned int ID){
+  return readData[ID];
+}
 unsigned int CastleLink::getDataPin(int ID){
   return pinID[ID];
 }
