@@ -40,8 +40,9 @@ void CastleLink::Speed_Cont(uint8_t reg, uint16_t data) {
   dataArray[0] = getHighBit(data);
   dataArray[1] = getLowBit(data);
   byte0 = ID >> 1;
-  byte0++;
+  byte0+=128;
   uint8_t checksum = 0-(byte0 + reg + dataArray[0] + dataArray[1]);
+  //uint8_t checksum = 0;
   uint8_t comBytes[5] = {byte0, reg, dataArray[0], dataArray[1], checksum};
   command(comBytes);
  /* digitalWrite(Nsspin, LOW);
